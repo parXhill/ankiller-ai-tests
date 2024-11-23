@@ -59,19 +59,19 @@ const significanceSettings = {
 };
 
 const grammarFormats = {
-  "Inflected forms": "Keywords must be in the grammatical form they appear in the given text.",
-  "Dictionary forms": "Keywords must be converted to their standard uninflected grammatical form. E.g. singular, nominative, infinitive, etc.",
+  "Inflected forms": "Words must be in the grammatical form they appear in the given text.",
+  "Dictionary forms": "Words must be converted to their standard uninflected grammatical form. E.g. singular, nominative, infinitive, etc.",
 };
 
 const partOfSpeechOptions = {
-  "Any": "Extract any part of speech as keywords.",
-  "Noun": "Only extract nouns as keywords.",
-  "Verb": "Only extract verbs as keywords.",
-  "Adjective": "Only extract adjectives as keywords.",
-  "Adverb": "Only extract adverbs as keywords.",
-  "Preposition": "Only extract prepositions as keywords.",
-  "Idiom": "Only extract idioms as keywords.",
-  "Phrasal verbs": "Only extract phrasal verb combinations as keywords.",
+  "Any": "Extract any part of speech.",
+  "Noun": "Only extract nouns.",
+  "Verb": "Only extract verbs .",
+  "Adjective": "Only extract adjectives.",
+  "Adverb": "Only extract adverbs.",
+  "Preposition": "Only extract prepositions.",
+  "Idiom": "Only extract idioms as the words.",
+  "Phrasal verbs": "Only extract phrasal verb combinations as the words.",
 };
 
 const cefrLevelArray = [
@@ -113,24 +113,25 @@ const groqModels = [
   
 STRICTLY RESPOND ONLY IN JSON, with no other text.
 ### Task Overview:
-Your task is to extract key information from a given text and format it into a JSON object. Follow the steps below carefully to ensure accurate output.
+Your task is to extract key words from a given text, to formulate exemplar sentences for those words, translate them, and and format it into a JSON object. Follow the steps below carefully to ensure accurate output.
+
 ### Step-by-Step Instructions:
-1. **Extract Keywords**:
-   - Identify the ${numberOfKeywords} most significant keywords at a ${languageLevel} level from the given ${targetLanguage} text.
+1. **Extract key words**:
+   - Identify the ${numberOfKeywords} most significant words at a ${languageLevel} level from the given ${targetLanguage} text.
    - ${keywordSignificance}
    - ${partOfSpeech}
-   - Keywords must not be proper nouns.
+   - The words must not be proper nouns.
    - ${keywordGrammarFormat}
 
 2. **Provide Translations**:
-   - For each keyword, provide the most common single-word translation.
+   - For each word, provide the most common single-word translation.
    - If no single-word translation exists, use the closest common equivalent.
 3. **Generate Exemplar Sentences**:
-   - For each keyword, create a simple exemplar sentence of ${exemplarSentenceLength} words or less.
-   - Exemplar sentences should be independently formulated to showcase the standard keyword use- they need not relate to the context of the given text.
-   - Exemplar sentences should present the keyword in its most typical semantic and syntactic usage.
-   - Exemplar sentences should make the keyword meaning clear.
-   - Exemplar sentences should make the keyword the most prominent word.
+   - For each keyword, create a simple exemplar sentence of ${exemplarSentenceLength} words or less that showcases that word's most standard use in the target language.
+   - Exemplar sentences should be created in isolation to showcase the standard word use- they should not relate to the given text.
+   - Exemplar sentences should present the word in its most typical semantic and syntactic usage.
+   - Exemplar sentences should make the word meaning clear.
+   - Exemplar sentences should make the word the most prominent word.
    - Exemplar sentences must be grammatically correct and use standard semantics.
 
 
@@ -143,9 +144,9 @@ Your task is to extract key information from a given text and format it into a J
    {
   "keywords": [
     {
-      "keyword": "{Insert the extracted keyword here}",
-      "translation": "{Provide the most common single-word translation here}",
-      "exemplar_sentence": "{Generate a simple sentence of 8 words or less using the keyword}",
+      "keyword": "{Insert the extracted word here}",
+      "translation": "{Provide the most common translation here}",
+      "exemplar_sentence": "{Generate a simple exemplar sentence of ${exemplarSentenceLength} words or less using the word that showcases the most standard use of the word in the target language}",
       "translation_sentence": "{Translate the exemplar sentence into English here}"
     },
     ...
