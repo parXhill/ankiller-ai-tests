@@ -3,6 +3,22 @@
 import { useState } from 'react';
 import Groq from 'groq-sdk';
 
+interface Message {
+  role: 'system' | 'user' | 'assistant' | 'function'; // Match allowed values
+  content: string;
+}
+
+interface Keyword {
+  keyword: string;
+  translation: string;
+  exemplar_sentence: string;
+  translation_sentence: string;
+}
+
+interface ParsedResponse {
+  keywords: Keyword[];
+}
+
 export default function Home() {
   const groq = new Groq({
     apiKey: process.env.NEXT_PUBLIC_GROQ_API_KEY,
@@ -10,7 +26,7 @@ export default function Home() {
   });
 
   const [inputMessage, setInputMessage] = useState('');
-  const [parsedResponse, setParsedResponse] = useState<any>(null);
+  const [parsedResponse, setParsedResponse] = useState<ParsedResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const fullMessage = `STRICTLY RESPOND ONLY IN JSON, with no other text. 1. Determine the {5} most significant key words in the following text. Keywords must not be proper nouns. 
@@ -28,11 +44,11 @@ export default function Home() {
       
       Text: ${inputMessage}`;
 
-  async function getGroqChatCompletion(messages: any): Promise<void> {
+  async function getGroqChatCompletion(messages: Message[]): Promise<void> {
     setIsLoading(true);
     try {
       const response = await groq.chat.completions.create({
-        messages,
+        messages: [{ role: 'system', content: fullMessage }], // Align with expected type
         model: 'llama3-70b-8192',
       });
 
@@ -41,7 +57,7 @@ export default function Home() {
         throw new Error('Response content is empty or null.');
       }
 
-      const jsonObject = JSON.parse(jsonString);
+      const jsonObject: ParsedResponse = JSON.parse(jsonString);
       console.log('Parsed Response:', jsonObject);
 
       setParsedResponse(jsonObject);
@@ -80,7 +96,7 @@ export default function Home() {
           <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-lg space-y-4">
             <h3 className="text-lg font-semibold text-gray-700">AI Response:</h3>
             <ul className="space-y-2">
-              {parsedResponse.keywords.map((keyword: any, index: number) => (
+              {parsedResponse.keywords.map((keyword, index) => (
                 <li key={index} className="p-2 bg-white rounded shadow">
                   <p>
                     <strong>Keyword:</strong> {keyword.keyword}
