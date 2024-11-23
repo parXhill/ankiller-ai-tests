@@ -25,12 +25,12 @@ interface PromptState {
 }
 
 const initialState: PromptState = {
-  inputMessage: 'Встре́ча с медве́дем мо́жет быть о́чень опа́сна. Ру́сские лю́ди лю́бят ходи́ть в лес и собира́ть грибы́ и я́годы. Они́ де́лают э́то с осторо́жностью, так как медве́ди то́же о́чень лю́бят я́годы и мо́гут напа́сть на челове́ка. Медве́дь ест всё: я́годы, ры́бу, мя́со и да́же насеко́мых. Осо́бенно он лю́бит мёд.',
+  inputMessage: '',
   parsedResponse: null,
   isLoading: false,
   selectedGroqModel: 'llama3-70b-8192',
   numberOfKeywords: 5, // Default value, can be adjusted
-  targetLanguage: 'Russian', // Default value, can be adjusted
+  targetLanguage: '', // Default value, can be adjusted
   languageLevel: 'A2 - Elementary', // Default value, e.g., A1
   keywordSignificance: "Significance is based on the frequency of occurrence in the target language.", // Default value, e.g., 'frequency' or 'relevance'
   exemplarSentenceLength: 8, // Default value, e.g., 8 words

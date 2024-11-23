@@ -1,6 +1,7 @@
 'use client';
 
 import Groq from 'groq-sdk';
+import { sampleTexts } from './assets/sampleTexts';
 
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -198,15 +199,34 @@ Given text: ${inputMessage}`;
 
         {/* Input Message */}
         <p>Source text</p>
-        <input
-          type="text"
-          value={inputMessage}
-          onChange={(e) => dispatch(setInputMessage(e.target.value))}
-          placeholder="Input source text here..."
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+        <div className="w-full flex flex-col space-y-2">
+          {/* Text Area Input */}
+          <textarea
+            value={inputMessage}
+            onChange={(e) => dispatch(setInputMessage(e.target.value))}
+            placeholder="Input source text here..."
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows={5} // Adjust the number of rows as needed
+          />
 
-        {/* Target Language */}
+  {/* Dropdown for Sample Texts */}
+  <select
+    onChange={(e) => dispatch(setInputMessage(e.target.value))}
+    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    defaultValue=""
+  >
+    <option value="" disabled>
+      Optional: Select sample text of a specific language. {targetLanguage}
+    </option>
+    {Object.entries(sampleTexts).map(([key, value]) => (
+      <option key={key} value={value}>
+        {key.charAt(0).toUpperCase() + key.slice(1)}
+      </option>
+    ))}
+  </select>
+</div>
+
+        {/* Target Language 
         <p>Target Language</p>
         <input
           type="text"
@@ -215,6 +235,7 @@ Given text: ${inputMessage}`;
           placeholder="Enter target language..."
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        */}
 
         {/* Language Level */}
           <p>Language Level</p>
@@ -341,7 +362,7 @@ Given text: ${inputMessage}`;
                   <th className="border border-gray-300 px-4 py-2 text-lg">Translation</th>
                   <th className="border border-gray-300 px-4 py-2 text-lg">Exemplar Sentence</th>
                   <th className="border border-gray-300 px-4 py-2 text-lg">Translation Sentence</th>
-                  <th className="border border-gray-300 px-4 py-2 text-lg">Checkbox</th>
+                  <th className="border border-gray-300 px-4 py-2 text-lg">Add to Deck</th>
                 </tr>
               </thead>
               <tbody>
