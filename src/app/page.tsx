@@ -126,8 +126,12 @@ Your task is to extract key information from a given text and format it into a J
    - For each keyword, provide the most common single-word translation.
    - If no single-word translation exists, use the closest common equivalent.
 3. **Generate Exemplar Sentences**:
-   - For each keyword, create a simple sentence of ${exemplarSentenceLength} words or less.
-   - Sentences must be grammatically correct and use standard semantics.
+   - For each keyword, create a simple exemplar sentence of ${exemplarSentenceLength} words or less.
+   - Exemplar sentences should be independently formulated to showcase the standard keyword use- they need not relate to the context of the given text.
+   - Exemplar sentences should present the keyword in its most typical semantic and syntactic usage.
+   - Exemplar sentences should make the keyword meaning clear.
+   - Exemplar sentences should make the keyword the most prominent word.
+   - Exemplar sentences must be grammatically correct and use standard semantics.
 
 
 4. **Translate Sentences**:
