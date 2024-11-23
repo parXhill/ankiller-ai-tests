@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Groq from 'groq-sdk';
 
 
@@ -21,18 +20,12 @@ import { setInputMessage,
   setPartOfSpeech } from '../store/promptSlice';
 
 
-interface Keyword {
-  keyword: string;
-  translation: string;
-  exemplar_sentence: string;
-  translation_sentence: string;
-}
+
 
 export default function Home() {
 
 
   const dispatch = useDispatch<AppDispatch>();
-  const promptData = useSelector((state: RootState) => state.prompt);
 
 
 
@@ -113,9 +106,7 @@ const groqModels = [
     "whisper-large-v3-turbo"
   ];
 
-  function handleSetModel(model: string): void {
-    dispatch(setSelectedGroqModel(model));
-  }
+
 
   const fullMessage = `
   
