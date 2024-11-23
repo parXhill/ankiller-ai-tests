@@ -34,8 +34,8 @@ const initialState: PromptState = {
   languageLevel: 'A2 - Elementary', // Default value, e.g., A1
   keywordSignificance: "Significance is based on the frequency of occurrence in the target language.", // Default value, e.g., 'frequency' or 'relevance'
   exemplarSentenceLength: 8, // Default value, e.g., 8 words
-  keywordGrammarFormat: "Keywords must be converted to their standard uninflected grammatical form. E.g. singular, nominative, infinitive, etc.", // Default value, can be adjusted
-  partOfSpeech: "Extract any part of speech as keywords.", // Default value, e.g., 'noun'
+  keywordGrammarFormat: "Words must be converted to their standard uninflected grammatical form. E.g. singular, nominative, infinitive, etc.", // Default value, can be adjusted
+  partOfSpeech: "Extract any part of speech as words.", // Default value, e.g., 'noun'
 };
 
 const promptSlice = createSlice({
