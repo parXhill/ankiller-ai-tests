@@ -3,10 +3,7 @@
 import { useState } from 'react';
 import Groq from 'groq-sdk';
 
-interface Message {
-  role: 'system' | 'user' | 'assistant' | 'function'; // Match allowed values
-  content: string;
-}
+
 
 interface Keyword {
   keyword: string;
@@ -44,7 +41,7 @@ export default function Home() {
       
       Text: ${inputMessage}`;
 
-  async function getGroqChatCompletion(messages: Message[]): Promise<void> {
+  async function getGroqChatCompletion(): Promise<void> {
     setIsLoading(true);
     try {
       const response = await groq.chat.completions.create({
@@ -84,7 +81,7 @@ export default function Home() {
 
         <button
           onClick={() =>
-            getGroqChatCompletion([{ role: 'system', content: fullMessage }])
+            getGroqChatCompletion()
           }
           className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:bg-gray-300 disabled:cursor-not-allowed"
           disabled={isLoading || !inputMessage.trim()}
