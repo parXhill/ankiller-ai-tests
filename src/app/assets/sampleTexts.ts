@@ -1,5 +1,5 @@
 export const sampleTexts: Record<
-  'icelandic' | 'english' | 'french' | 'russian' | 'polish' | 'chinese' | 'japanese' | 'arabic' | 'danish' | 'spanish',
+  'Icelandic' | 'English' | 'French' | 'Russian' | 'Polish' | 'Chinese' | 'Japanese' | 'Arabic' | 'Danish' | 'Spanish',
   string
 > = {
     Icelandic: `Eldfjöll á Íslandi
