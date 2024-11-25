@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { CardToSend } from '../../store/promptSlice';
 
 // Function to send POST request

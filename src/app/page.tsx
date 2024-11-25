@@ -9,8 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { ParsedResponse } from '../store/promptSlice';
 
-import { CardToSend } from '../store/promptSlice';
-import { UpdatePayload } from '../store/promptSlice';
+
 
 import { setInputMessage,
   setParsedResponse,
@@ -23,9 +22,7 @@ import { setInputMessage,
   setExemplarSentenceLength,
   setKeywordGrammarFormat,
   setPartOfSpeech,
-  setCardToSend,
-  setMultipleCardFields } from '../store/promptSlice';
-import { use } from 'react';
+   } from '../store/promptSlice';
 
 
 
@@ -61,7 +58,6 @@ const numberOfKeywords = useSelector((state: RootState) => state.prompt.numberOf
 
 
 
-const cardToSend = useSelector((state: RootState) => state.prompt.cardToSend);
 
 
 const significanceSettings = {
