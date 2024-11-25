@@ -2,11 +2,15 @@
 
 import Groq from 'groq-sdk';
 import { sampleTexts } from './assets/sampleTexts';
+import { sendExampleData } from './serverPost/serverPost';
 
 
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { ParsedResponse } from '../store/promptSlice';
+
+import { CardToSend } from '../store/promptSlice';
+import { UpdatePayload } from '../store/promptSlice';
 
 import { setInputMessage,
   setParsedResponse,
@@ -18,7 +22,10 @@ import { setInputMessage,
   setKeywordSignificance,
   setExemplarSentenceLength,
   setKeywordGrammarFormat,
-  setPartOfSpeech } from '../store/promptSlice';
+  setPartOfSpeech,
+  setCardToSend,
+  setMultipleCardFields } from '../store/promptSlice';
+import { use } from 'react';
 
 
 
@@ -50,6 +57,11 @@ const exemplarSentenceLength = useSelector((state: RootState) => state.prompt.ex
 const keywordGrammarFormat = useSelector((state: RootState) => state.prompt.keywordGrammarFormat);
 const partOfSpeech = useSelector((state: RootState) => state.prompt.partOfSpeech);
 const numberOfKeywords = useSelector((state: RootState) => state.prompt.numberOfKeywords);
+
+
+
+
+const cardToSend = useSelector((state: RootState) => state.prompt.cardToSend);
 
 
 const significanceSettings = {
@@ -155,6 +167,9 @@ Your task is to extract key words from a given text, to formulate exemplar sente
 
 Given text: ${inputMessage}`;
 
+
+
+
   async function getGroqChatCompletion(): Promise<void> {
     dispatch(setIsLoading(true));
     try {
@@ -172,6 +187,29 @@ Given text: ${inputMessage}`;
       console.log('Parsed Response:', jsonObject);
 
       dispatch(setParsedResponse(jsonObject));
+
+      for (const keyword of jsonObject.keywords) {
+        let cardTemplate = {
+            keyword: keyword.keyword,
+            exemplar: keyword.exemplar_sentence,
+            keywordTranslation: keyword.translation,
+            exemplarTranslation: keyword.translation_sentence,
+            targetLanguage: targetLanguage,
+            aiGenerated: 1,
+            aiModel: selectedGroqModel,
+            languageLevel: languageLevel,
+            numberOfKeywords: numberOfKeywords,
+            exemplarSentenceLength: exemplarSentenceLength,
+            keywordSignificance: keywordSignificance,
+            keywordGrammarFormat: keywordGrammarFormat,
+            partOfSpeech: partOfSpeech
+        };
+
+        console.log('card to send', cardTemplate);
+        sendExampleData(cardTemplate);
+
+      }
+
     } catch (error) {
       console.error('Error fetching Groq chat completion:', error);
       dispatch(setParsedResponse(null));
@@ -393,5 +431,9 @@ Given text: ${inputMessage}`;
           </div>
         )}
       </div>
+
+      <button
+        onClick={() => sendExampleData()}
+        className="mt-4 bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"/>
     </div>
   );}
