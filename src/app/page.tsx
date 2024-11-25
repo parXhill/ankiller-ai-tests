@@ -54,6 +54,9 @@ const exemplarSentenceLength = useSelector((state: RootState) => state.prompt.ex
 const keywordGrammarFormat = useSelector((state: RootState) => state.prompt.keywordGrammarFormat);
 const partOfSpeech = useSelector((state: RootState) => state.prompt.partOfSpeech);
 const numberOfKeywords = useSelector((state: RootState) => state.prompt.numberOfKeywords);
+const cardToSend = useSelector((state: RootState) => state.prompt.cardToSend);
+
+console.log(cardToSend)
 
 
 
@@ -185,7 +188,7 @@ Given text: ${inputMessage}`;
       dispatch(setParsedResponse(jsonObject));
 
       for (const keyword of jsonObject.keywords) {
-        let cardTemplate = {
+        const cardTemplate = {
             keyword: keyword.keyword,
             exemplar: keyword.exemplar_sentence,
             keywordTranslation: keyword.translation,
