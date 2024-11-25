@@ -82,7 +82,7 @@ const promptSlice = createSlice({
       const { field, value } = action.payload;
     
       // Cast state.cardToSend to CardToSend explicitly
-      const cardToSend = state.cardToSend as CardToSend;
+     // const cardToSend = state.cardToSend as CardToSend;
     
       if (field in state.cardToSend) {
         (state.cardToSend[field as keyof CardToSend] as string | number) =
