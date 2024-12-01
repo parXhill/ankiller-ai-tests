@@ -1,6 +1,9 @@
 import Link from "next/link";
+import DeckCard from "./components/DeckCard";
 
 export default function UxPage() {
+
+  
 
   return (
     <>
@@ -8,7 +11,7 @@ export default function UxPage() {
     <p>Decks</p>
     <p>Mix</p>
     <p>Create</p>
-    <Link href="/uxtest/testforreload"> Test For Reload</Link>
+    <Link href="/uxtest/reviews">Reviews</Link>
     </>
   );
 }   

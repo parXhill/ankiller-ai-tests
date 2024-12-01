@@ -219,7 +219,7 @@ Given text: ${inputMessage}`;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-[70%] bg-white rounded-lg shadow-md p-6 space-y-4">
+      <div className="w-full bg-white rounded-lg shadow-md p-6 space-y-4">
         <h1 className="text-2xl font-bold text-gray-800">AI Response Checker</h1>
 
         {/* Model Selector */}
