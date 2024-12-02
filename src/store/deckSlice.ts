@@ -3,15 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 const deckSlice = createSlice({
   name: 'deck',
   initialState: {
-    selectedItem: null,
+    selectedDeck: null,
   },
   reducers: {
-    setSelectedItem: (state, action) => {
-      state.selectedItem = action.payload;
+    setSelectedDeck: (state, action) => {
+      state.selectedDeck = action.payload;
     },
   },
 });
 
-export const { setSelectedItem } = deckSlice.actions;
+export const { setSelectedDeck } = deckSlice.actions;
 
 export default deckSlice.reducer;

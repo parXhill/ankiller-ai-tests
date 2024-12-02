@@ -1,16 +1,31 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+'use client'
 
-export default function DeckCard({deckData: object}) {
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Deck, Card} from '../../assets/deckDummyData';
+import { setSelectedDeck } from '../../../store/deckSlice';
+import Link from 'next/link';
+
+
+export default function DeckCard({deckData} : {deckData: Deck}) {
 
     const selectedDeck = useSelector((state: any) => state.deck.selectedDeck);
+    console.log(selectedDeck);
+    const dispatch = useDispatch();
 
     return (
-        <div className="flex">
-
-            {selectedDeck !== deckData.deckId ? (<p>{deckData.deckName}</p>) : 
+        <div onClick={()=> dispatch(setSelectedDeck(deckData) )} className="flex bg-blue-300 p-10 m-4 rounded-2xl hover:bg-slate-100 cursor-pointer text-center items-center justify-center">
             
-            null} 
+            {
+            selectedDeck && selectedDeck.id === deckData.id ?    (<div className="flex gap-x-2">
+                <p>Review</p>
+                <Link href='./uxtest/editor'><p>Browse</p></Link> 
+                <p>Add</p>
+                </div>)
+                : 
+                (<p>{deckData.title}</p>)
+            
+            } 
 
         </div>
     );
