@@ -2,7 +2,7 @@
 
 import Groq from 'groq-sdk';
 import { sampleTexts } from './assets/sampleTexts';
-import { sendExampleData } from './serverPost/serverPost';
+import { sendExampleData } from './lib/serverPost';
 
 
 import { useSelector, useDispatch } from 'react-redux';

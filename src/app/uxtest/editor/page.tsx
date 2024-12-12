@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 interface Card {
   id: number;
   keyword: string;
-  translation: string;
+  keywordTranslation: string;
   exemplar: string;
   exemplarTranslation: string;
 }
@@ -52,7 +52,7 @@ export default function EditorPage() {
               <tr key={card.id} className="even:bg-gray-50">
                 <td className="border border-gray-300 px-4 py-2 text-center">{card.id}</td>
                 <td className="border border-gray-300 px-4 py-2">{card.keyword}</td>
-                <td className="border border-gray-300 px-4 py-2">{card.translation}</td>
+                <td className="border border-gray-300 px-4 py-2">{card.keywordTranslation}</td>
                 <td className="border border-gray-300 px-4 py-2">{card.exemplar}</td>
                 <td className="border border-gray-300 px-4 py-2">{card.exemplarTranslation}</td>
               </tr>

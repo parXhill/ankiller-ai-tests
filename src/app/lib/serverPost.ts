@@ -10,7 +10,7 @@ export const sendExampleData = async (data: CardToSend) => {
 
         console.log('sendExampleData called in try block');
 
-        const response = await axios.post('http://209.38.89.241:4000/save-example-data', data, {
+        const response = await axios.post('https://alexanderjames.site:4000/save-example-data', data, {
             headers: {
                 'Content-Type': 'application/json'
             }

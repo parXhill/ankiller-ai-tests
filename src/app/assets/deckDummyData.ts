@@ -1,12 +1,11 @@
-// Define the Card interface
 export interface Card {
     id: number;
     keyword: string;
-    translation: string;
+    translation?: string; // Optional property
+    keywordTranslation?: string; // Optional property
     exemplar: string;
     exemplarTranslation: string;
   }
-  
   // Define the Deck interface
 export interface Deck {
     id: number;

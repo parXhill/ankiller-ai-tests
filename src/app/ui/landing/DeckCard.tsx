@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Deck, Card} from '../../assets/deckDummyData';
+import { Deck } from '../../assets/deckDummyData';
 import { setSelectedDeck } from '../../../store/deckSlice';
 import Link from 'next/link';
 
@@ -10,8 +9,9 @@ import Link from 'next/link';
 export default function DeckCard({deckData} : {deckData: Deck}) {
 
     const selectedDeck = useSelector((state: any) => state.deck.selectedDeck);
-    console.log(selectedDeck);
+ 
     const dispatch = useDispatch();
+
 
     return (
         <div onClick={()=> dispatch(setSelectedDeck(deckData) )} className="flex bg-blue-300 p-10 m-4 rounded-2xl hover:bg-slate-100 cursor-pointer text-center items-center justify-center">
@@ -26,7 +26,6 @@ export default function DeckCard({deckData} : {deckData: Deck}) {
                 (<p>{deckData.title}</p>)
             
             } 
-
         </div>
     );
 }
