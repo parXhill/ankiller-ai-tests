@@ -3,7 +3,7 @@
 import Link from "next/link";
 import DeckCard from "../ui/landing/DeckCard";
 import { useSelector, useDispatch } from "react-redux";
-import { Deck, Card } from '../assets/deckDummyData';
+import { Deck } from '../assets/deckDummyData';
 import { fetchExampleData } from '@/app/lib/serverGet';
 import { updateDummyDecks } from '@/store/deckSlice';
 
